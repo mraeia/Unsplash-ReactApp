@@ -25,6 +25,38 @@ body {
       }
     }
   }
+  ul {
+    padding-inline-start: 0px;
+    list-style-type: none;
+    &.pagination {
+      text-align: center;
+      li {
+        transition: background-color 0.2s;
+        display: inline-block;
+        a {
+          display: inline-block;
+          padding: 5px 5px;
+          &:focus {
+            outline: none;
+          }
+        }
+        cursor: pointer;
+        &:hover:not(.active) {
+          background-color: #ddd;
+        }
+        &.active {
+          background-color: #9da0ac;
+          color: white;
+        }
+        &.break-me {
+          border: none;
+          &:hover:not(.active) {
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
   .loader {
     position: fixed;
     top: 50%;
