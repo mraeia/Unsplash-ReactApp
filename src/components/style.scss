@@ -1,0 +1,79 @@
+.modal {
+  position: fixed;
+  font-size: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  &-main {
+    position: fixed;
+    overflow: scroll;
+    width: 60%;
+    max-height: 100%;
+    overflow-y: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    img {
+      width: 100%;
+    }
+    .desc {
+      font-size: 30px;
+      text-align: center;
+      background-color: black;
+      text-transform: uppercase;
+      color: white;
+    }
+    @media (max-width: 600px) {
+      .desc {
+        font-size: 10px;
+      }
+    }
+  }
+  &.display-block {
+    display: block;
+  }
+  &.display-none {
+    display: none;
+  }
+  i {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    width: 60px;
+    margin-top: -30px;
+    height: 60px;
+    &.arrow-left {
+      transform: rotate(135deg);
+      position: fixed;
+      top: 50%;
+      left: 50px;
+    }
+    &.arrow-right {
+      transform: rotate(-45deg);
+      position: fixed;
+      top: 50%;
+      right: 50px;
+    }
+  }
+  @media (max-width: 600px) {
+    i {
+      width: 30px;
+      margin-top: -15px;
+      height: 30px;
+      &.arrow-left {
+        transform: rotate(135deg);
+        position: fixed;
+        top: 50%;
+        left: 20px;
+      }
+      &.arrow-right {
+        transform: rotate(-45deg);
+        position: fixed;
+        top: 50%;
+        right: 20px;
+      }
+    }
+  }
+}

@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { chunk } from "lodash";
 import ReactPaginate from "react-paginate";
+import Modal from "./components/Modal";
 import "./App.scss";
 
 const App = () => {
   const [images, setImages] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [showModal, toggleModal] = useState(false);
+  const [currentImage, setCurrentImage] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [refs, setRefs] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -18,19 +22,23 @@ const App = () => {
       )
       .then(data => {
         let images = [];
+        let refs = [];
         if (data.data.results) {
           data.data.results.forEach((result, index) => {
+            refs.push(React.createRef());
             let image = {
               index,
               id: result.id,
               smallURL: result.urls.small,
               regularURL: result.urls.regular,
-              description: result.description
+              description: result.description,
+              alt_description: result.alt_description
             };
             images.push(image);
           });
         }
         setPageCount(data.data.total_pages);
+        setRefs(refs);
         setImages(images);
         setLoading(false);
       })
@@ -41,11 +49,32 @@ const App = () => {
     setCurrentPage(e.selected + 1);
   };
 
+  const imageClickHandler = image => {
+    setCurrentImage(image);
+    toggleModal(true);
+  };
+
+  const updateCurrentImage = image => {
+    refs[image.index].current.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+    setCurrentImage(image);
+  };
+
   const renderColumn = array => {
     return (
       <div className="img-column">
         {array.map(image => {
-          return <img key={image.id} src={image.smallURL} alt="result"></img>;
+          return (
+            <img
+              ref={refs[image.index]}
+              key={image.id}
+              onClick={() => imageClickHandler(image)}
+              src={image.smallURL}
+              alt="result"
+            ></img>
+          );
         })}
       </div>
     );
@@ -66,6 +95,13 @@ const App = () => {
 
   return (
     <div>
+      <Modal
+        show={showModal}
+        toggleModal={toggleModal}
+        currentImage={currentImage}
+        images={images}
+        setCurrentImage={updateCurrentImage}
+      />
       <ReactPaginate
         previousLabel={"<"}
         nextLabel={">"}
