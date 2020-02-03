@@ -13,7 +13,8 @@ const MOCK_PROPS = {
       "https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjExMzA4NH0",
     regularURL:
       "https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjExMzA4NH0",
-    descriptoon: "car"
+    descripton: "car",
+    alt_description: "car"
   },
   images: [
     {
@@ -23,7 +24,8 @@ const MOCK_PROPS = {
         "https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjExMzA4NH0",
       regularURL:
         "https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjExMzA4NH0",
-      descriptoon: "car"
+      descripton: "car",
+      alt_description: "car"
     }
   ],
   setCurrentImage: jest.fn()
@@ -61,7 +63,7 @@ describe("Modal component", () => {
     const propsError = checkPropTypes(
       Modal.propTypes,
       MOCK_PROPS,
-      "props",
+      "prop",
       Modal.name
     );
     expect(propsError).toBeUndefined();

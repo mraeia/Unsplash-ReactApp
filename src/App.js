@@ -81,7 +81,7 @@ const App = () => {
   };
 
   const renderImages = images => {
-    let arrays = chunk(images, 10);
+    let arrays = chunk(images, 8);
     return (
       <div className="flex-container">
         {arrays.map((arr, index) => {
